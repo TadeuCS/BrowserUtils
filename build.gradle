@@ -1,0 +1,52 @@
+apply plugin: 'java'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'com.tcs.main.MainApp'
+}
+
+jar { 
+    baseName = 'BrowserUtils'
+    /*
+     * 1.0=Open Browser by args
+    */
+    version = "1.0.0"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest { 
+        attributes 'Implementation-Title': 'BrowserUtils',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Main-Class': 'com.tcs.main.MainApp'
+        
+    } 
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } 
+    }
+    doLast {
+        copy {
+            from jar
+            into "C:/Obers/"
+        }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA' 
+    exclude '.classpath'
+    exclude '.project'
+    exclude 'META-INF/LICENSE.txt' 
+    exclude 'META-INF/NOTICE.txt' 
+    duplicatesStrategy = 'exclude'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.maven.apache.org/maven2/" }
+//    flatDir {
+//        dirs 'C:/Obers/'
+//    }
+}
+
+dependencies {
+}
