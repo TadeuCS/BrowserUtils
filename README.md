@@ -22,8 +22,8 @@ java -jar [CAMINHO_DO_EXECUTÁVEL_JAVA] [URL]
 
 <b> 2º URL </b>
 <br/>
-<i>Diretório mais Nome do arquivo que será executado:</i>
+<i>Urls que serão abertas em seu navegador separadas por espaço:</i>
 <br/>
-<blockquote>C:\BrowserUtils-1.0.0.jar</blockquote>
+<blockquote>"https://www.google.com/" "https://www.java.com/pt_BR/"</blockquote>
 <br/>
 
